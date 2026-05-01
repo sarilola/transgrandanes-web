@@ -1,0 +1,74 @@
+:root {
+  --primary: #C82909;
+  --primary-dark: #9E1F07;
+  --primary-light: #E14A2B;
+
+  --text: #1f2937;
+  --text-light: #6b7280;
+
+  --nav-bg: rgba(255, 255, 255, 0.9);
+  --nav-bg-dark: rgba(11, 11, 11, 0.9);
+}
+
+/* 🌙 DARK MODE */
+.dark {
+  --text: #f3f4f6;
+}
+
+/* NAVBAR */
+.nav-container {
+  backdrop-filter: blur(10px);
+  background: var(--nav-bg);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.dark .nav-container {
+  background: var(--nav-bg-dark);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* LOGO */
+.nav-logo {
+  color: var(--primary);
+}
+
+/* LINKS */
+.nav-link {
+  color: var(--text);
+  cursor: pointer;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+  color: var(--primary);
+}
+
+/* underline animado */
+.nav-link::after {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  left: 0;
+  bottom: -4px;
+  background: var(--primary);
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* BOTÓN */
+.nav-button {
+  background: var(--primary);
+  color: white;
+  border-radius: 999px;
+  transition: all 0.3s ease;
+}
+
+.nav-button:hover {
+  background: var(--primary-dark);
+  transform: scale(1.05);
+}
