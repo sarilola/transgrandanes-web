@@ -6,12 +6,12 @@
 :root {
   --bg: #ffffff;
   --text: #1f2937;
-  --nav: rgba(255, 255, 255, 0.9);
+  --nav: rgba(255, 255, 255, 0.7);
 }
 
 /* DARK MODE */
 .dark {
   --bg: #0b0b0b;
   --text: #f3f4f6;
-  --nav: rgba(11, 11, 11, 0.9);
+  --nav: rgba(11, 11, 11, 0.7);
 }

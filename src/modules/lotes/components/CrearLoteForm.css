@@ -1,0 +1,99 @@
+/* CrearLoteForm.css - Estilos para el formulario de creación de lote */
+
+/* Variables para colores */
+:root {
+  --primary: #c82909;
+  --form-bg-light: #f9fafb; /* gray-50 */
+  --form-bg-dark: rgba(15, 23, 42, 0.8); /* slate-900/80 */
+  --input-bg-light: #ffffff;
+  --input-bg-dark: #0f172a; /* slate-900 */
+  --text-primary-light: #111827; /* gray-900 */
+  --text-primary-dark: #f8fafc; /* gray-50 */
+  --text-secondary-light: #4b5563; /* gray-600 */
+  --text-secondary-dark: #94a3b8; /* gray-400 */
+  --border-light: #d1d5db; /* gray-300 */
+  --border-dark: #334155; /* slate-700 */
+  --file-list-bg-light: #f3f4f6; /* gray-100 */
+  --file-list-bg-dark: #1e293b; /* slate-800 */
+  --file-list-text-light: #334155; /* gray-700 */
+  --file-list-text-dark: #cbd5e1; /* gray-300 */
+}
+
+/* Sección del formulario */
+.form-section {
+  background-color: var(--form-bg-light);
+  padding: 1.5rem;
+  border-radius: 10px;
+  border: 1px solid var(--border-light);
+}
+
+.dark .form-section {
+  background-color: var(--form-bg-dark);
+  border-color: var(--border-dark);
+}
+
+/* Título del formulario */
+.form-title {
+  color: var(--text-primary-light);
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.dark .form-title {
+  color: var(--text-primary-dark);
+}
+
+/* Labels */
+.form-label {
+  font-size: 0.875rem;
+  color: var(--text-secondary-light);
+}
+
+.dark .form-label {
+  color: var(--text-secondary-dark);
+}
+
+/* Inputs */
+.form-input {
+  background-color: var(--input-bg-light);
+  border: 1px solid var(--border-light);
+  padding: 0.5rem;
+  border-radius: 6px;
+  color: var(--text-primary-light);
+  outline: none;
+}
+
+.form-input:focus {
+  border-color: var(--primary);
+}
+
+.dark .form-input {
+  background-color: var(--input-bg-dark);
+  border-color: var(--border-dark);
+  color: var(--text-primary-dark);
+}
+
+.form-highlight {
+  color: var(--primary);
+}
+
+.form-button,
+.submit-button {
+  background-color: var(--primary);
+  color: #ffffff;
+  border: none;
+  padding: 0.75rem 1.25rem;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.form-button:hover,
+.submit-button:hover {
+  background-color: #9e1f07;
+}
+
+.form-textarea {
+  min-height: 6rem;
+}
+

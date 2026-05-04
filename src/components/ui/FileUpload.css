@@ -1,0 +1,142 @@
+/* FileUpload.css - Estilos discretos pero con detalle para carga de archivos */
+
+.file-upload-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.file-upload-label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 1rem 1.25rem;
+  border: 2px dashed rgba(200, 41, 9, 0.35);
+  border-radius: 8px;
+  background-color: rgba(200, 41, 9, 0.06);
+  transition: all 0.2s ease;
+}
+
+.file-upload-label:hover {
+  background-color: rgba(200, 41, 9, 0.1);
+  border-color: rgba(200, 41, 9, 0.55);
+}
+
+.dark .file-upload-label {
+  background-color: rgba(148, 163, 184, 0.08);
+  border-color: rgba(148, 163, 184, 0.35);
+}
+
+.dark .file-upload-label:hover {
+  background-color: rgba(148, 163, 184, 0.12);
+  border-color: rgba(148, 163, 184, 0.55);
+}
+
+.file-upload-content {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.file-upload-icon {
+  font-size: 1.25rem;
+  color: #c82909;
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+.file-upload-label:hover .file-upload-icon {
+  transform: scale(1.05);
+}
+
+.file-upload-text-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+.file-upload-title {
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin: 0;
+  color: var(--text-primary-light);
+}
+
+.dark .file-upload-title {
+  color: var(--text-primary-dark);
+}
+
+.file-upload-hint {
+  font-size: 0.75rem;
+  margin: 0;
+  color: var(--text-secondary-light);
+}
+
+.dark .file-upload-hint {
+  color: var(--text-secondary-dark);
+}
+
+.file-upload-input {
+  display: none;
+}
+
+.file-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  background-color: rgba(34, 197, 94, 0.09);
+  border: 1px solid rgba(34, 197, 94, 0.35);
+  border-radius: 8px;
+  animation: slideIn 0.2s ease;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.file-item-icon {
+  color: #22c55e;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.file-item-name {
+  font-size: 0.85rem;
+  color: var(--text-primary-light);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dark .file-item-name {
+  color: var(--text-primary-dark);
+}
+
+.file-item-remove {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  color: #ef4444;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: all 0.2s ease;
+}
+
+.file-item-remove:hover {
+  background-color: rgba(239, 68, 68, 0.1);
+  border-radius: 4px;
+}

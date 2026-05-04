@@ -1,19 +1,18 @@
 {/* Barra de navegación */}
 import { useState } from "react";
 import { FaBars, FaTimes, FaMoon, FaSun } from "react-icons/fa";
+import logo from "../../assets/logo.svg";
 
 export default function Navbar({ toggleTheme }) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 w-full z-50 backdrop-blur-md bg-[var(--nav)] border-b border-gray-200 dark:border-gray-800">
+    <nav className="fixed top-0 w-full z-50 backdrop-blur-lg bg-[var(--nav)] border-b border-gray-200 dark:border-gray-800">
 
       <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
 
         {/* Logo */}
-        <h1 className="text-xl font-bold text-primary">
-          MiApp
-        </h1>
+        <img src={logo} alt="Logo Transgrandanes" className="h-12 w-auto" />
 
         {/* Desktop Menu */}
         <ul className="hidden md:flex gap-8 items-center">
