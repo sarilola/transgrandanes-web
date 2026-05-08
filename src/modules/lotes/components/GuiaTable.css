@@ -1,0 +1,207 @@
+/* GuiaTable.css */
+
+.gt-card {
+  border: 1px solid var(--ep-border-light, #e5e7eb);
+  border-radius: 8px;
+  overflow: hidden;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.dark .gt-card {
+  border-color: var(--ep-border-dark, #334155);
+}
+
+/* HEADER */
+.gt-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.85rem;
+  background-color: rgba(200, 41, 9, 0.07);
+  border-bottom: 1px solid rgba(200, 41, 9, 0.12);
+  min-width: 0;
+}
+
+.dark .gt-header {
+  background-color: rgba(200, 41, 9, 0.1);
+  border-bottom-color: rgba(200, 41, 9, 0.2);
+}
+
+.gt-header-icon {
+  color: #c82909;
+  font-size: 0.82rem;
+  flex-shrink: 0;
+}
+
+.gt-header-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #c82909;
+  flex: 1;
+  min-width: 0;
+}
+
+.gt-header-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.65rem;
+  color: #c82909;
+  background-color: rgba(200, 41, 9, 0.1);
+  border: 1px solid rgba(200, 41, 9, 0.2);
+  padding: 0.12rem 0.45rem;
+  border-radius: 999px;
+  max-width: 110px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* BODY */
+.gt-body {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+/* TABLA */
+.gt-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.gt-row {
+  border-bottom: 1px solid var(--ep-border-light, #e5e7eb);
+  transition: background-color 0.15s ease;
+}
+
+.dark .gt-row {
+  border-bottom-color: var(--ep-border-dark, #334155);
+}
+
+.gt-row:last-child {
+  border-bottom: none;
+}
+
+.gt-row:hover {
+  background-color: rgba(200, 41, 9, 0.025);
+}
+
+.dark .gt-row:hover {
+  background-color: rgba(200, 41, 9, 0.05);
+}
+
+/* Celda label: ancho fijo, no crece */
+.gt-cell-label {
+  width: 38%;
+  padding: 0.45rem 0.75rem;
+  vertical-align: middle;
+  background-color: var(--ep-surface-light, #f9fafb);
+  border-right: 1px solid var(--ep-border-light, #e5e7eb);
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.dark .gt-cell-label {
+  background-color: rgba(255, 255, 255, 0.03);
+  border-right-color: var(--ep-border-dark, #334155);
+}
+
+/* Contenedor interior del label con ícono */
+.gt-cell-label {
+  display: table-cell;
+}
+
+.gt-row-icon {
+  font-size: 0.75rem;
+  color: #c82909;
+  vertical-align: middle;
+  margin-right: 0.3rem;
+  flex-shrink: 0;
+}
+
+.gt-label-text {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--ep-text-muted-light, #6b7280);
+  vertical-align: middle;
+}
+
+.dark .gt-label-text {
+  color: var(--ep-text-muted-dark, #94a3b8);
+}
+
+/* Celda valor: ocupa el resto, corta si es muy largo */
+.gt-cell-value {
+  padding: 0.45rem 0.75rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--ep-text-light, #111827);
+  word-break: break-word;
+  overflow-wrap: break-word;
+  vertical-align: middle;
+  max-width: 0;
+  overflow: hidden;
+}
+
+.dark .gt-cell-value {
+  color: var(--ep-text-dark, #f1f5f9);
+}
+
+/* OBSERVACIONES */
+.gt-obs {
+  padding: 0.6rem 0.85rem;
+  background-color: var(--ep-surface-light, #f9fafb);
+  border-top: 1px solid var(--ep-border-light, #e5e7eb);
+  border-left: 3px solid rgba(200, 41, 9, 0.25);
+}
+
+.dark .gt-obs {
+  background-color: rgba(255, 255, 255, 0.03);
+  border-top-color: var(--ep-border-dark, #334155);
+  border-left-color: rgba(200, 41, 9, 0.35);
+}
+
+.gt-obs-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ep-text-muted-light, #6b7280);
+  margin: 0 0 0.2rem;
+}
+
+.dark .gt-obs-label {
+  color: var(--ep-text-muted-dark, #94a3b8);
+}
+
+.gt-obs-text {
+  font-size: 0.78rem;
+  color: var(--ep-text-light, #111827);
+  margin: 0;
+  line-height: 1.5;
+  word-break: break-word;
+}
+
+.dark .gt-obs-text {
+  color: var(--ep-text-dark, #f1f5f9);
+}
+
+/* EMPTY */
+.gt-empty {
+  padding: 0.8rem 0.85rem;
+  font-size: 0.75rem;
+  font-style: italic;
+  color: var(--ep-text-muted-light, #6b7280);
+}
+
+.dark .gt-empty {
+  color: var(--ep-text-muted-dark, #94a3b8);
+}

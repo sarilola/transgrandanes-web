@@ -19,81 +19,155 @@
   --file-list-text-dark: #cbd5e1; /* gray-300 */
 }
 
-/* Sección del formulario */
-.form-section {
-  background-color: var(--form-bg-light);
-  padding: 1.5rem;
-  border-radius: 10px;
-  border: 1px solid var(--border-light);
+/* CrearLoteForm.css */
+
+/* Layout principal: formulario + preview lado a lado */
+.clf-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  align-items: start;
+  padding: 1.5rem 0;
 }
 
-.dark .form-section {
-  background-color: var(--form-bg-dark);
-  border-color: var(--border-dark);
+@media (min-width: 1024px) {
+  .clf-layout {
+    grid-template-columns: 1fr 420px;
+    gap: 2rem;
+  }
 }
 
-/* Título del formulario */
-.form-title {
-  color: var(--text-primary-light);
-  font-size: 1.5rem;
-  font-weight: bold;
+/* Columna formulario */
+.clf-form-col {
+  min-width: 0;
 }
 
-.dark .form-title {
-  color: var(--text-primary-dark);
+.clf-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
 }
 
-/* Labels */
-.form-label {
-  font-size: 0.875rem;
-  color: var(--text-secondary-light);
+/* Columna preview */
+.clf-preview-col {
+  min-width: 0;
 }
 
-.dark .form-label {
-  color: var(--text-secondary-dark);
+.clf-preview-sticky {
+  position: sticky;
+  top: 5.5rem;
 }
 
-/* Inputs */
-.form-input {
-  background-color: var(--input-bg-light);
-  border: 1px solid var(--border-light);
-  padding: 0.5rem;
+/* Grids de campos */
+.clf-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.85rem;
+}
+
+.clf-grid-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0.85rem;
+}
+
+.clf-grid-4 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.85rem;
+}
+
+@media (min-width: 640px) {
+  .clf-grid-4 {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .clf-grid-2,
+  .clf-grid-3 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Botón eliminar guía */
+.clf-remove-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
   border-radius: 6px;
-  color: var(--text-primary-light);
-  outline: none;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  background-color: rgba(239, 68, 68, 0.06);
+  color: #ef4444;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.9rem;
 }
 
-.form-input:focus {
-  border-color: var(--primary);
+.clf-remove-btn:hover {
+  background-color: rgba(239, 68, 68, 0.12);
+  border-color: rgba(239, 68, 68, 0.5);
 }
 
-.dark .form-input {
-  background-color: var(--input-bg-dark);
-  border-color: var(--border-dark);
-  color: var(--text-primary-dark);
+/* Botón agregar guía */
+.clf-add-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 10px;
+  border: 2px dashed rgba(200, 41, 9, 0.3);
+  background-color: rgba(200, 41, 9, 0.04);
+  color: #c82909;
+  font-size: 0.88rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
-.form-highlight {
-  color: var(--primary);
+.clf-add-btn:hover {
+  background-color: rgba(200, 41, 9, 0.08);
+  border-color: rgba(200, 41, 9, 0.5);
 }
 
-.form-button,
-.submit-button {
-  background-color: var(--primary);
+/* Fila de submit */
+.clf-submit-row {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--border-light);
+}
+
+.dark .clf-submit-row {
+  border-top-color: var(--border-dark);
+}
+
+/* Botón submit */
+.clf-submit-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.75rem;
+  background-color: #c82909;
   color: #ffffff;
   border: none;
-  padding: 0.75rem 1.25rem;
-  border-radius: 9999px;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  transition: background-color 0.2s ease, transform 0.15s ease;
 }
 
-.form-button:hover,
-.submit-button:hover {
+.clf-submit-btn:hover {
   background-color: #9e1f07;
 }
 
-.form-textarea {
-  min-height: 6rem;
+.clf-submit-btn:active {
+  transform: scale(0.98);
 }
+
 

@@ -1,0 +1,421 @@
+/* EmailPreview.css */
+
+:root {
+  --ep-primary: #c82909;
+  --ep-primary-light: rgba(200, 41, 9, 0.08);
+  --ep-bg-light: #ffffff;
+  --ep-bg-dark: #0f172a;
+  --ep-surface-light: #f9fafb;
+  --ep-surface-dark: #1e293b;
+  --ep-border-light: #e5e7eb;
+  --ep-border-dark: #334155;
+  --ep-text-light: #111827;
+  --ep-text-dark: #f1f5f9;
+  --ep-text-muted-light: #6b7280;
+  --ep-text-muted-dark: #94a3b8;
+}
+
+.ep-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  width: 100%;
+  box-sizing: border-box;
+  min-width: 0;
+}
+
+/* TOOLBAR */
+.ep-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1rem;
+  background-color: var(--ep-primary);
+  border-radius: 12px 12px 0 0;
+}
+
+.ep-toolbar-icon {
+  color: rgba(255,255,255,0.85);
+  font-size: 0.88rem;
+  flex-shrink: 0;
+}
+
+.ep-toolbar-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.95);
+  flex: 1;
+}
+
+.ep-toolbar-badge {
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.ep-toolbar-badge--warn {
+  background-color: rgba(251, 191, 36, 0.25);
+  border: 1px solid rgba(251, 191, 36, 0.5);
+  color: #fde68a;
+  animation: ep-pulse 2.5s ease-in-out infinite;
+}
+
+.ep-toolbar-badge--ok {
+  background-color: rgba(34, 197, 94, 0.2);
+  border: 1px solid rgba(34, 197, 94, 0.4);
+  color: #86efac;
+}
+
+@keyframes ep-pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.55; }
+}
+
+/* INDICADOR DE CAMPOS FALTANTES */
+.ep-missing {
+  background-color: rgba(251, 191, 36, 0.08);
+  border: 1px solid rgba(251, 191, 36, 0.3);
+  border-top: none;
+  padding: 0.6rem 0.9rem;
+}
+
+.dark .ep-missing {
+  background-color: rgba(251, 191, 36, 0.06);
+  border-color: rgba(251, 191, 36, 0.2);
+}
+
+.ep-missing-header {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-bottom: 0.35rem;
+}
+
+.ep-missing-icon {
+  color: #d97706;
+  font-size: 0.82rem;
+  flex-shrink: 0;
+}
+
+.ep-missing-title {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #d97706;
+}
+
+.dark .ep-missing-title {
+  color: #fbbf24;
+}
+
+.ep-missing-list {
+  margin: 0;
+  padding: 0 0 0 1rem;
+  list-style: disc;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.2rem 1.25rem;
+}
+
+.ep-missing-item {
+  font-size: 0.72rem;
+  color: #92400e;
+  line-height: 1.5;
+}
+
+.dark .ep-missing-item {
+  color: #fcd34d;
+}
+
+/* SHELL del correo */
+.ep-email-shell {
+  border: 1px solid var(--ep-border-light);
+  border-top: none;
+  border-radius: 0 0 12px 12px;
+  background-color: var(--ep-bg-light);
+  overflow: hidden;
+  width: 100%;
+  box-sizing: border-box;
+  min-width: 0;
+}
+
+.dark .ep-email-shell {
+  border-color: var(--ep-border-dark);
+  background-color: var(--ep-bg-dark);
+}
+
+/* CABECERA CLIENTE DE CORREO */
+.ep-client-header {
+  padding: 0.9rem 1rem;
+  background-color: var(--ep-surface-light);
+  border-bottom: 1px solid var(--ep-border-light);
+  min-width: 0;
+}
+
+.dark .ep-client-header {
+  background-color: var(--ep-surface-dark);
+  border-bottom-color: var(--ep-border-dark);
+}
+
+.ep-client-dots {
+  display: flex;
+  gap: 5px;
+  margin-bottom: 0.65rem;
+}
+
+.ep-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+}
+
+.ep-dot--red    { background-color: #ef4444; }
+.ep-dot--yellow { background-color: #f59e0b; }
+.ep-dot--green  { background-color: #22c55e; }
+
+.ep-client-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 0;
+}
+
+.ep-client-row {
+  display: flex;
+  gap: 0.4rem;
+  font-size: 0.75rem;
+  min-width: 0;
+}
+
+.ep-client-field {
+  font-weight: 600;
+  color: var(--ep-text-muted-light);
+  min-width: 46px;
+  flex-shrink: 0;
+}
+
+.dark .ep-client-field {
+  color: var(--ep-text-muted-dark);
+}
+
+.ep-client-value {
+  color: var(--ep-text-light);
+  word-break: break-word;
+  overflow-wrap: break-word;
+  min-width: 0;
+}
+
+.dark .ep-client-value {
+  color: var(--ep-text-dark);
+}
+
+.ep-client-value--muted {
+  color: var(--ep-text-muted-light);
+}
+
+.dark .ep-client-value--muted {
+  color: var(--ep-text-muted-dark);
+}
+
+/* Valor vacío: texto en cursiva amarillo-ámbar para indicar que falta */
+.ep-client-value--empty {
+  color: #d97706;
+  font-style: italic;
+}
+
+.dark .ep-client-value--empty {
+  color: #fbbf24;
+}
+
+.ep-client-subject {
+  font-weight: 600;
+  color: var(--ep-text-light);
+}
+
+.dark .ep-client-subject {
+  color: var(--ep-text-dark);
+}
+
+/* BODY DEL CORREO */
+.ep-email-body {
+  padding: 1.25rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  min-width: 0;
+}
+
+/* EMPTY STATE */
+.ep-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 2.5rem 1rem;
+  text-align: center;
+}
+
+.ep-empty-icon {
+  font-size: 2.25rem;
+  color: var(--ep-border-light);
+}
+
+.dark .ep-empty-icon {
+  color: var(--ep-border-dark);
+}
+
+.ep-empty-title {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--ep-text-muted-light);
+  margin: 0;
+}
+
+.dark .ep-empty-title {
+  color: var(--ep-text-muted-dark);
+}
+
+.ep-empty-hint {
+  font-size: 0.75rem;
+  color: var(--ep-text-muted-light);
+  margin: 0;
+  max-width: 240px;
+  line-height: 1.5;
+}
+
+.dark .ep-empty-hint {
+  color: var(--ep-text-muted-dark);
+}
+
+/* BANNER */
+.ep-banner {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.85rem 1rem;
+  background-color: #c82909;
+  border-radius: 7px;
+}
+
+.ep-banner-logo {
+  width: 36px;
+  height: 36px;
+  border-radius: 7px;
+  background-color: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #ffffff;
+  flex-shrink: 0;
+  letter-spacing: 0.04em;
+}
+
+.ep-banner-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  min-width: 0;
+}
+
+.ep-banner-company {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+}
+
+.ep-banner-tagline {
+  font-size: 0.7rem;
+  color: rgba(255,255,255,0.75);
+  margin: 0;
+}
+
+/* SECCIONES */
+.ep-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  min-width: 0;
+}
+
+.ep-greeting {
+  font-size: 0.84rem;
+  line-height: 1.6;
+  color: var(--ep-text-light);
+}
+
+.dark .ep-greeting {
+  color: var(--ep-text-dark);
+}
+
+.ep-greeting p {
+  margin: 0 0 0.4rem;
+}
+
+.ep-section-heading {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ep-text-muted-light);
+  margin: 0;
+}
+
+.dark .ep-section-heading {
+  color: var(--ep-text-muted-dark);
+}
+
+.ep-guias-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  min-width: 0;
+}
+
+/* FOOTER */
+.ep-footer {
+  border-top: 1px solid var(--ep-border-light);
+  padding-top: 0.85rem;
+  font-size: 0.72rem;
+  color: var(--ep-text-muted-light);
+  line-height: 1.6;
+}
+
+.dark .ep-footer {
+  border-top-color: var(--ep-border-dark);
+  color: var(--ep-text-muted-dark);
+}
+
+.ep-footer p {
+  margin: 0 0 0.35rem;
+}
+
+.ep-footer-divider {
+  border: none;
+  border-top: 1px solid var(--ep-border-light);
+  margin: 0.4rem 0;
+}
+
+.dark .ep-footer-divider {
+  border-top-color: var(--ep-border-dark);
+}
+
+.ep-footer-meta {
+  font-size: 0.67rem;
+  color: var(--ep-text-muted-light);
+}
+
+.dark .ep-footer-meta {
+  color: var(--ep-text-muted-dark);
+}

@@ -12,7 +12,7 @@ function App() {
   }, [dark]);
 
   return (
-    <Router>
+    <Router>      
       <div className="min-h-screen bg-[var(--bg)] text-[var(--text)] transition-colors duration-300">
         
         <Navbar toggleTheme={() => setDark(!dark)} />
