@@ -1,0 +1,27 @@
+/* src/modules/lotes/pages/CrearLotePage.css */
+.lote-page-wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 2rem 1rem;
+  background-color: var(--bg);
+}
+
+.lote-page-content {
+  width: 100%;
+  max-width: 850px; /* Ancho profesional para formularios */
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.lote-header h1 {
+  font-size: 1.85rem;
+  font-weight: 700;
+  color: var(--primary); /* Rojo Transgrandanes */
+  margin-bottom: 0.5rem;
+}
+
+.lote-header p {
+  color: var(--text-light);
+  font-size: 0.95rem;
+}

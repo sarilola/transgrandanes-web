@@ -136,7 +136,6 @@
 .ep-email-shell {
   border: 1px solid var(--ep-border-light);
   border-top: none;
-  border-radius: 0 0 12px 12px;
   background-color: var(--ep-bg-light);
   overflow: hidden;
   width: 100%;
@@ -147,6 +146,71 @@
 .dark .ep-email-shell {
   border-color: var(--ep-border-dark);
   background-color: var(--ep-bg-dark);
+}
+
+/* PIE DE ACCIÓN — debajo del shell, cierra la preview */
+.ep-action-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.9rem 1.25rem;
+  background-color: var(--ep-surface-light);
+  border: 1px solid var(--ep-border-light);
+  border-top: none;
+  border-radius: 0 0 12px 12px;
+}
+
+.dark .ep-action-footer {
+  background-color: var(--ep-surface-dark);
+  border-color: var(--ep-border-dark);
+}
+
+.ep-action-hint {
+  font-size: 0.78rem;
+  color: var(--ep-text-muted-light);
+  line-height: 1.5;
+  min-width: 0;
+}
+
+.dark .ep-action-hint {
+  color: var(--ep-text-muted-dark);
+}
+
+.ep-send-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.65rem 1.5rem;
+  background-color: #c82909;
+  color: #ffffff;
+  border: none;
+  border-radius: 999px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.15s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.ep-send-btn:hover {
+  background-color: #9e1f07;
+}
+
+.ep-send-btn:active {
+  transform: scale(0.97);
+}
+
+@media (max-width: 480px) {
+  .ep-action-footer {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .ep-send-btn {
+    justify-content: center;
+  }
 }
 
 /* CABECERA CLIENTE DE CORREO */
@@ -222,7 +286,6 @@
   color: var(--ep-text-muted-dark);
 }
 
-/* Valor vacío: texto en cursiva amarillo-ámbar para indicar que falta */
 .ep-client-value--empty {
   color: #d97706;
   font-style: italic;

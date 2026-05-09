@@ -1,7 +1,7 @@
 import { useState } from "react";
 import {
   LuPackagePlus, LuTruck, LuPlus, LuMinus, LuMail, LuAnchor,
-  LuHash, LuUser, LuFileText, LuMapPin, LuSend
+  LuHash, LuUser, LuFileText, LuMapPin
 } from "react-icons/lu";
 import { FileUpload } from "../../../components/ui/FileUpload";
 import { FormSection } from "../../../components/ui/FormSection";
@@ -47,23 +47,21 @@ export default function CrearLoteForm() {
   };
 
   return (
-    <div className="clf-layout">
+    <form onSubmit={handleSubmit} className="clf-layout">
 
-      {/* ── Columna previsualización (izquierda en desktop, arriba en móvil) ── */}
-      <div className="clf-preview-col">
-        <div className="clf-preview-sticky">
-          <EmailPreview
-            remitente={remitente}
-            tituloCorreo={tituloCorreo}
-            mensaje={mensaje}
-            guias={guias}
-          />
-        </div>
+      {/* ── Bloque superior: previsualización ── */}
+      <div className="clf-preview-block">
+        <EmailPreview
+          remitente={remitente}
+          tituloCorreo={tituloCorreo}
+          mensaje={mensaje}
+          guias={guias}
+        />
       </div>
 
-      {/* ── Columna formulario (derecha en desktop, abajo en móvil) ── */}
+      {/* ── Formulario de detalles ── */}
       <div className="clf-form-col">
-        <form onSubmit={handleSubmit} className="clf-form">
+        <div className="clf-form">
 
           <FormSection icon={LuMail} title="Información del correo">
             <div className="clf-grid-2">
@@ -194,15 +192,9 @@ export default function CrearLoteForm() {
             <LuPlus /> Agregar otra guía
           </button>
 
-          <div className="clf-submit-row">
-            <button type="submit" className="clf-submit-btn">
-              <LuSend /> Crear y enviar lote
-            </button>
-          </div>
-
-        </form>
+        </div>
       </div>
 
-    </div>
+    </form>
   );
 }

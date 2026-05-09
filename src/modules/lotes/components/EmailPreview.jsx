@@ -1,8 +1,7 @@
-import { LuMail, LuPackage, LuCircleAlert } from "react-icons/lu";
-import { GuiaTable } from "../../../components/ui/GuiaTable";
+import { LuMail, LuPackage, LuCircleAlert, LuSend } from "react-icons/lu";
+import { GuiaTable } from "../components/GuiaTable";
 import "./EmailPreview.css";
 
-/* Campos requeridos para considerar el correo "completo" */
 const CAMPOS_CORREO = [
   { key: "remitente",    label: "Cliente / Remitente" },
   { key: "tituloCorreo", label: "Título del correo" },
@@ -39,13 +38,11 @@ const CamposFaltantes = ({ faltantes }) => {
 };
 
 export const EmailPreview = ({ remitente, tituloCorreo, mensaje, guias }) => {
-  /* Campos vacíos del correo general */
   const correoData = { remitente, tituloCorreo, mensaje };
   const faltantesCorreo = CAMPOS_CORREO
     .filter(({ key }) => !correoData[key]?.trim())
     .map(({ label }) => label);
 
-  /* Campos vacíos por guía */
   const faltantesPorGuia = guias.map((guia) =>
     CAMPOS_GUIA.filter(({ key }) => !guia[key]?.toString().trim()).map(({ label }) => label)
   );
@@ -62,6 +59,8 @@ export const EmailPreview = ({ remitente, tituloCorreo, mensaje, guias }) => {
 
   return (
     <div className="ep-wrapper">
+
+      {/* Toolbar rojo */}
       <div className="ep-toolbar">
         <LuMail className="ep-toolbar-icon" aria-hidden="true" />
         <span className="ep-toolbar-label">Previsualización del correo</span>
@@ -74,11 +73,12 @@ export const EmailPreview = ({ remitente, tituloCorreo, mensaje, guias }) => {
         )}
       </div>
 
-      {/* Indicador de campos faltantes del correo */}
+      {/* Campos faltantes del correo general */}
       {faltantesCorreo.length > 0 && (
         <CamposFaltantes faltantes={faltantesCorreo} />
       )}
 
+      {/* Shell del correo */}
       <div className="ep-email-shell">
         <div className="ep-client-header">
           <div className="ep-client-dots">
@@ -174,6 +174,17 @@ export const EmailPreview = ({ remitente, tituloCorreo, mensaje, guias }) => {
           )}
         </div>
       </div>
+
+      {/* Pie de acción — botón de enviar */}
+      <div className="ep-action-footer">
+        <p className="ep-action-hint">
+          Revisa el correo y cuando esté listo, envíalo.
+        </p>
+        <button type="submit" className="ep-send-btn">
+          <LuSend aria-hidden="true" /> Crear y enviar lote
+        </button>
+      </div>
+
     </div>
   );
 };
