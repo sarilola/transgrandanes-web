@@ -1,0 +1,131 @@
+/* AutocompleteInput.css — inline suggestion */
+
+.ac-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+/* Contenedor del input */
+.ac-input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* Input base — hereda estilos de form-input del formulario */
+.ac-input {
+  width: 100%;
+  background-color: var(--input-bg-light);
+  border: 1px solid var(--border-light);
+  padding: 0.5rem 2.25rem 0.5rem 0.5rem;
+  border-radius: 6px;
+  color: var(--text-primary-light);
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  font-size: inherit;
+}
+
+.ac-input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(200, 41, 9, 0.1);
+}
+
+.ac-input::placeholder {
+  color: var(--text-secondary-light);
+  font-style: italic;
+  font-size: 0.85rem;
+}
+
+/* Estado confirmado — borde verde sutil */
+.ac-input--confirmed {
+  border-color: rgba(34, 197, 94, 0.5);
+}
+
+.ac-input--confirmed:focus {
+  border-color: rgba(34, 197, 94, 0.7);
+  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
+}
+
+/* Dark mode */
+.dark .ac-input {
+  background-color: var(--input-bg-dark);
+  border-color: var(--border-dark);
+  color: var(--text-primary-dark);
+}
+
+.dark .ac-input::placeholder {
+  color: var(--text-secondary-dark);
+}
+
+.dark .ac-input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(200, 41, 9, 0.15);
+}
+
+.dark .ac-input--confirmed {
+  border-color: rgba(34, 197, 94, 0.4);
+}
+
+/* Ícono de confirmado + botón limpiar */
+.ac-icon {
+  position: absolute;
+  right: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: #22c55e;
+  font-size: 0.8rem;
+  pointer-events: none;
+}
+
+.ac-icon--confirmed {
+  pointer-events: all;
+}
+
+.ac-clear-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: #94a3b8;
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: color 0.15s ease;
+  line-height: 1;
+}
+
+.ac-clear-btn:hover {
+  color: #ef4444;
+}
+
+/* Hint de teclado */
+.ac-hint {
+  font-size: 0.7rem;
+  color: var(--text-secondary-light);
+  margin: 0;
+  padding-left: 0.1rem;
+}
+
+.dark .ac-hint {
+  color: var(--text-secondary-dark);
+}
+
+.ac-hint kbd {
+  display: inline-block;
+  padding: 0.05rem 0.3rem;
+  border: 1px solid var(--border-light);
+  border-radius: 3px;
+  font-size: 0.68rem;
+  font-family: monospace;
+  background-color: var(--form-bg-light);
+  color: var(--text-primary-light);
+}
+
+.dark .ac-hint kbd {
+  border-color: var(--border-dark);
+  background-color: var(--form-bg-dark);
+  color: var(--text-primary-dark);
+}

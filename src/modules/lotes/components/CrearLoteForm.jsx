@@ -1,39 +1,40 @@
 import { useState } from "react";
 import {
-  LuPackagePlus, LuTruck, LuPlus, LuMinus, LuMail, LuAnchor,
+  LuPackagePlus, LuPlus, LuMinus, LuMail,
   LuHash, LuUser, LuFileText
 } from "react-icons/lu";
-import { MdMergeType } from "react-icons/md";
 import { FileUpload } from "../../../components/ui/FileUpload";
 import { FormSection } from "../../../components/ui/FormSection";
 import { FormField } from "../../../components/ui/FormField";
 import { EmailPreview } from "./EmailPreview";
+import AutocompleteInput from "../../../components/ui/AutocompleteInput";
 import "./CrearLoteForm.css";
 
+let nextGuiaId = 1;
+
 const guiaVacia = () => ({
-  id: Date.now(),
-  idLinea: "",
-  eta: "",
-  booking: "",
-  conductor: "",
-  licencia: "",
-  placa: "",
-  contenedor: "",
-  sello: "",
-  tipoTransaccion: "",
-  puerto: "",
-  depot: "",
-  tipoContenedor: "",
-  archivo: null,
-  eir: null,
-  observaciones: "",
+  id: nextGuiaId++,
+  linea:           null,   // { idLinea, nombreLinea }
+  eta:             '',
+  booking:         '',
+  conductor:       null,   // { idConductor, nombreConductor, apellidoConductor }
+  vehiculo:        null,   // { idVehiculo, placa }
+  contenedor:      '',
+  tipoContenedor:  null,   // { idTipoContenedor, tipo }
+  sello:           '',
+  depot:           '',
+  puerto:          null,   // { idPuerto, nombre }
+  tipoTransaccion: null,   // { idTransaccion, descripcion }
+  archivo:         null,
+  eir:             null,
+  observaciones:   '',
 });
 
 export default function CrearLoteForm() {
-  const [remitente, setRemitente] = useState("");
+  const [remitente, setRemitente]       = useState("");
   const [tituloCorreo, setTituloCorreo] = useState("");
-  const [mensaje, setMensaje] = useState("");
-  const [guias, setGuias] = useState([guiaVacia()]);
+  const [mensaje, setMensaje]           = useState("");
+  const [guias, setGuias]               = useState([guiaVacia()]);
 
   const agregarGuia = () => setGuias((prev) => [...prev, guiaVacia()]);
 
@@ -47,7 +48,21 @@ export default function CrearLoteForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Generando Lote:", { remitente, tituloCorreo, mensaje, guias });
+    const dataLote = {
+      remitente,
+      tituloCorreo,
+      mensaje,
+      guias: guias.map(({ id: _id, linea, conductor, vehiculo, tipoContenedor, puerto, tipoTransaccion, ...rest }) => ({
+        ...rest,
+        Linea_idLinea:                   linea?.idLinea,
+        Conductor_idConductor:           conductor?.idConductor,
+        Vehiculo_idVehiculo:             vehiculo?.idVehiculo,
+        TipoContenedor_idTipoContenedor: tipoContenedor?.idTipoContenedor,
+        Puerto_idPuerto:                 puerto?.idPuerto,
+        TipoTransaccion_idTransaccion:   tipoTransaccion?.idTransaccion,
+      })),
+    };
+    console.log("Generando Lote:", dataLote);
   };
 
   return (
@@ -114,12 +129,14 @@ export default function CrearLoteForm() {
               }
             >
               <div className="clf-grid-2">
-                <FormField
-                  label="ID Línea naviera"
-                  icon={LuAnchor}
-                  placeholder="Ej: MAERSK-01"
-                  value={guia.idLinea}
-                  onChange={(e) => actualizarGuia(guia.id, "idLinea", e.target.value)}
+                <AutocompleteInput
+                  label="Línea naviera"
+                  placeholder="Buscar línea naviera..."
+                  endpoint="/api/lineas/autocompletar"
+                  labelKey={(item) => item.nombreLinea}
+                  sublabelKey={(item) => `ID: ${item.idLinea}`}
+                  onSelect={(item) => actualizarGuia(guia.id, "linea", item)}
+                  value={guia.linea}
                 />
                 <FormField
                   label="ETA (Llegada estimada)"
@@ -136,17 +153,22 @@ export default function CrearLoteForm() {
                   value={guia.booking}
                   onChange={(e) => actualizarGuia(guia.id, "booking", e.target.value)}
                 />
-                <FormField
+                <AutocompleteInput
                   label="Conductor"
-                  icon={LuTruck}
+                  placeholder="Buscar por nombre..."
+                  endpoint="/api/conductores/autocompletar"
+                  labelKey={(item) => `${item.nombreConductor} ${item.apellidoConductor}`}
+                  sublabelKey={(item) => `ID: ${item.idConductor}`}
+                  onSelect={(item) => actualizarGuia(guia.id, "conductor", item)}
                   value={guia.conductor}
-                  onChange={(e) => actualizarGuia(guia.id, "conductor", e.target.value)}
                 />
-                <FormField
+                <AutocompleteInput
                   label="Placa"
-                  icon={LuTruck}
-                  value={guia.placa}
-                  onChange={(e) => actualizarGuia(guia.id, "placa", e.target.value)}
+                  placeholder="Buscar vehículo por placa..."
+                  endpoint="/api/vehiculos/autocompletar"
+                  labelKey={(item) => item.placa}
+                  onSelect={(item) => actualizarGuia(guia.id, "vehiculo", item)}
+                  value={guia.vehiculo}
                 />
               </div>
 
@@ -156,54 +178,58 @@ export default function CrearLoteForm() {
                   value={guia.contenedor}
                   onChange={(e) => actualizarGuia(guia.id, "contenedor", e.target.value)}
                 />
-
-                <FormField
+                <AutocompleteInput
                   label="Tipo de Contenedor"
-                  icon={LuAnchor}
+                  placeholder="Buscar tipo..."
+                  endpoint="/api/tipos-contenedor/autocompletar"
+                  labelKey={(item) => item.tipo}
+                  sublabelKey={(item) => `ID: ${item.idTipoContenedor}`}
+                  onSelect={(item) => actualizarGuia(guia.id, "tipoContenedor", item)}
                   value={guia.tipoContenedor}
-                  onChange={(e) => actualizarGuia(guia.id, "tipoContenedor", e.target.value)}
                 />
-                
                 <FormField
                   label="Sello"
                   value={guia.sello}
                   onChange={(e) => actualizarGuia(guia.id, "sello", e.target.value)}
                 />
-
                 <FormField
                   label="Depot"
                   value={guia.depot}
                   onChange={(e) => actualizarGuia(guia.id, "depot", e.target.value)}
                 />
-
-                <FormField
+                <AutocompleteInput
                   label="Puerto"
-                  icon={LuAnchor}
-                  value={guia.destino}
-                  onChange={(e) => actualizarGuia(guia.id, "destino", e.target.value)}
+                  placeholder="Buscar puerto..."
+                  endpoint="/api/puertos/autocompletar"
+                  labelKey={(item) => item.nombre}
+                  sublabelKey={(item) => `ID: ${item.idPuerto}`}
+                  onSelect={(item) => actualizarGuia(guia.id, "puerto", item)}
+                  value={guia.puerto}
                 />
-
-                <FormField
+                <AutocompleteInput
                   label="Tipo de Transacción"
-                  icon={MdMergeType}
-                  value={guia.origen}
-                  onChange={(e) => actualizarGuia(guia.id, "origen", e.target.value)}
+                  placeholder="Buscar tipo..."
+                  endpoint="/api/tipos-transaccion/autocompletar"
+                  labelKey={(item) => item.descripcion}
+                  sublabelKey={(item) => `ID: ${item.idTransaccion}`}
+                  onSelect={(item) => actualizarGuia(guia.id, "tipoTransaccion", item)}
+                  value={guia.tipoTransaccion}
                 />
               </div>
 
               <FileUpload
-                label="Guia de Remision"
+                label="Guía de Remisión"
                 required={true}
-                onFileChange={(file) => actualizarGuia(guia.id, 'archivo', file)}
+                onFileChange={(file) => actualizarGuia(guia.id, "archivo", file)}
                 file={guia.archivo}
-                acceptedExtensions={['pdf', 'jpg', 'jpeg', 'png']}
+                acceptedExtensions={["pdf", "jpg", "jpeg", "png"]}
               />
 
               <FileUpload
                 label="EIR (Equipment Interchange Receipt)"
-                onFileChange={(file) => actualizarGuia(guia.id, 'extra', file)}
-                file={guia.extra}
-                acceptedExtensions={['pdf']}
+                onFileChange={(file) => actualizarGuia(guia.id, "eir", file)}
+                file={guia.eir}
+                acceptedExtensions={["pdf"]}
               />
 
               <FormField
