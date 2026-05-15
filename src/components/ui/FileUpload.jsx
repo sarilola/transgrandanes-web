@@ -5,7 +5,8 @@ export const FileUpload = ({
   label = "Archivo",
   onFileChange,
   file,
-  acceptedExtensions = []
+  acceptedExtensions = [],
+  required = false,
 }) => {
   const handleFileChange = (e) => {
     const selectedFile = e.target.files?.[0];
@@ -23,22 +24,34 @@ export const FileUpload = ({
 
   return (
     <div className="file-upload-wrapper">
-      <label htmlFor="file-input" className="file-upload-label">
+      <label
+        htmlFor={`file-input-${label}`}
+        className={`file-upload-label ${required ? "file-upload-label--required" : "file-upload-label--optional"}`}
+      >
         <div className="file-upload-content">
-          <LuFileUp className="file-upload-icon" />
+          <LuFileUp className={`file-upload-icon ${required ? "file-upload-icon--required" : "file-upload-icon--optional"}`} />
           <div className="file-upload-text-group">
-            <p className="file-upload-title">{label}</p>
-            <p className="file-upload-hint">PDF, JPG, PNG</p>
+            <p className="file-upload-title">
+              {label}
+              {required && <span className="file-upload-required-badge">Obligatorio</span>}
+            </p>
+            <p className="file-upload-hint">
+              {acceptedExtensions.length > 0
+                ? acceptedExtensions.map(e => e.toUpperCase()).join(', ')
+                : 'PDF, JPG, PNG'}
+            </p>
           </div>
         </div>
         <input
-          id="file-input"
+          id={`file-input-${label}`}
           type="file"
           onChange={handleFileChange}
           className="file-upload-input"
+          required={required && !file}
           accept={acceptedExtensions.length > 0 ? acceptedExtensions.map(ext => `.${ext}`).join(',') : undefined}
         />
       </label>
+
       {file && (
         <div className="file-item">
           <LuFileUp className="file-item-icon" />

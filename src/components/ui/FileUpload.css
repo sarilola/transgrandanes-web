@@ -1,33 +1,49 @@
-/* FileUpload.css - Estilos discretos pero con detalle para carga de archivos */
-
 .file-upload-wrapper {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
 }
 
+/* Base compartida */
 .file-upload-label {
   display: flex;
   align-items: center;
   cursor: pointer;
   padding: 1rem 1.25rem;
-  border: 2px dashed rgba(200, 41, 9, 0.35);
   border-radius: 8px;
-  background-color: rgba(200, 41, 9, 0.06);
+  border-width: 2px;
+  border-style: dashed;
   transition: all 0.2s ease;
 }
 
-.file-upload-label:hover {
-  background-color: rgba(200, 41, 9, 0.1);
-  border-color: rgba(200, 41, 9, 0.55);
+/* Variante obligatoria — rojo */
+.file-upload-label--required {
+  border-color: rgba(220, 38, 38, 0.45);
+  background-color: rgba(220, 38, 38, 0.06);
+}
+.file-upload-label--required:hover {
+  background-color: rgba(220, 38, 38, 0.11);
+  border-color: rgba(220, 38, 38, 0.65);
 }
 
-.dark .file-upload-label {
-  background-color: rgba(148, 163, 184, 0.08);
-  border-color: rgba(148, 163, 184, 0.35);
+/* Variante opcional — gris */
+.file-upload-label--optional {
+  border-color: rgba(107, 114, 128, 0.35);
+  background-color: rgba(107, 114, 128, 0.05);
+}
+.file-upload-label--optional:hover {
+  background-color: rgba(107, 114, 128, 0.1);
+  border-color: rgba(107, 114, 128, 0.55);
 }
 
-.dark .file-upload-label:hover {
+/* Dark mode */
+.dark .file-upload-label--required,
+.dark .file-upload-label--optional {
+  background-color: rgba(148, 163, 184, 0.07);
+  border-color: rgba(148, 163, 184, 0.3);
+}
+.dark .file-upload-label--required:hover,
+.dark .file-upload-label--optional:hover {
   background-color: rgba(148, 163, 184, 0.12);
   border-color: rgba(148, 163, 184, 0.55);
 }
@@ -40,14 +56,15 @@
 
 .file-upload-icon {
   font-size: 1.25rem;
-  color: #c82909;
   flex-shrink: 0;
   transition: transform 0.2s ease;
 }
-
 .file-upload-label:hover .file-upload-icon {
   transform: scale(1.05);
 }
+
+.file-upload-icon--required { color: #dc2626; }
+.file-upload-icon--optional { color: #6b7280; }
 
 .file-upload-text-group {
   display: flex;
@@ -59,11 +76,24 @@
   font-size: 0.9rem;
   font-weight: 500;
   margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   color: var(--text-primary-light);
 }
+.dark .file-upload-title { color: var(--text-primary-dark); }
 
-.dark .file-upload-title {
-  color: var(--text-primary-dark);
+/* Badge "Obligatorio" */
+.file-upload-required-badge {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: #dc2626;
+  background-color: rgba(220, 38, 38, 0.1);
+  border: 1px solid rgba(220, 38, 38, 0.25);
+  border-radius: 4px;
+  padding: 0.1rem 0.4rem;
 }
 
 .file-upload-hint {
@@ -71,35 +101,25 @@
   margin: 0;
   color: var(--text-secondary-light);
 }
+.dark .file-upload-hint { color: var(--text-secondary-dark); }
 
-.dark .file-upload-hint {
-  color: var(--text-secondary-dark);
-}
+.file-upload-input { display: none; }
 
-.file-upload-input {
-  display: none;
-}
-
+/* Archivo seleccionado */
 .file-item {
   display: flex;
   align-items: center;
   gap: 0.75rem;
   padding: 0.75rem 1rem;
-  background-color: rgba(34, 197, 94, 0.09);
-  border: 1px solid rgba(34, 197, 94, 0.35);
+  background-color: rgba(34, 197, 94, 0.08);
+  border: 1px solid rgba(34, 197, 94, 0.3);
   border-radius: 8px;
   animation: slideIn 0.2s ease;
 }
 
 @keyframes slideIn {
-  from {
-    opacity: 0;
-    transform: translateY(-8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 .file-item-icon {
@@ -110,16 +130,13 @@
 
 .file-item-name {
   font-size: 0.85rem;
-  color: var(--text-primary-light);
   flex: 1;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  color: var(--text-primary-light);
 }
-
-.dark .file-item-name {
-  color: var(--text-primary-dark);
-}
+.dark .file-item-name { color: var(--text-primary-dark); }
 
 .file-item-remove {
   display: flex;
@@ -134,9 +151,8 @@
   cursor: pointer;
   font-size: 0.85rem;
   transition: all 0.2s ease;
+  border-radius: 4px;
 }
-
 .file-item-remove:hover {
   background-color: rgba(239, 68, 68, 0.1);
-  border-radius: 4px;
 }

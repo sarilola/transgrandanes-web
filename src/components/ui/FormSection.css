@@ -25,10 +25,6 @@
   border-color: var(--border-dark);
 }
 
-.form-section--accent {
-  border-left: 3px solid var(--primary);
-}
-
 .form-section-header {
   display: flex;
   align-items: center;

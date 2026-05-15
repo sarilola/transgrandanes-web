@@ -25,8 +25,8 @@ const ROWS = [
   { icon: LuTruck,    label: "Placa",          key: "placa" },
   { icon: LuPackage,  label: "Contenedor",     key: "contenedor" },
   { icon: LuShield,   label: "Sello",          key: "sello" },
-  { icon: LuMapPin,   label: "Origen",         key: "origen" },
-  { icon: LuAnchor,   label: "Puerto destino", key: "destino" },
+  { icon: LuMapPin,   label: "Tipo de Transacción", key: "tipoTransaccion" },
+  { icon: LuAnchor,   label: "Puerto", key: "puerto" },
 ];
 
 export const GuiaTable = ({ guia, index }) => {

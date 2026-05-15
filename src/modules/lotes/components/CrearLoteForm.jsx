@@ -1,8 +1,9 @@
 import { useState } from "react";
 import {
   LuPackagePlus, LuTruck, LuPlus, LuMinus, LuMail, LuAnchor,
-  LuHash, LuUser, LuFileText, LuMapPin
+  LuHash, LuUser, LuFileText
 } from "react-icons/lu";
+import { MdMergeType } from "react-icons/md";
 import { FileUpload } from "../../../components/ui/FileUpload";
 import { FormSection } from "../../../components/ui/FormSection";
 import { FormField } from "../../../components/ui/FormField";
@@ -19,9 +20,12 @@ const guiaVacia = () => ({
   placa: "",
   contenedor: "",
   sello: "",
-  origen: "",
-  destino: "",
+  tipoTransaccion: "",
+  puerto: "",
+  depot: "",
+  tipoContenedor: "",
   archivo: null,
+  eir: null,
   observaciones: "",
 });
 
@@ -152,30 +156,54 @@ export default function CrearLoteForm() {
                   value={guia.contenedor}
                   onChange={(e) => actualizarGuia(guia.id, "contenedor", e.target.value)}
                 />
+
+                <FormField
+                  label="Tipo de Contenedor"
+                  icon={LuAnchor}
+                  value={guia.tipoContenedor}
+                  onChange={(e) => actualizarGuia(guia.id, "tipoContenedor", e.target.value)}
+                />
+                
                 <FormField
                   label="Sello"
                   value={guia.sello}
                   onChange={(e) => actualizarGuia(guia.id, "sello", e.target.value)}
                 />
+
                 <FormField
-                  label="Origen"
-                  icon={LuMapPin}
-                  value={guia.origen}
-                  onChange={(e) => actualizarGuia(guia.id, "origen", e.target.value)}
+                  label="Depot"
+                  value={guia.depot}
+                  onChange={(e) => actualizarGuia(guia.id, "depot", e.target.value)}
                 />
+
                 <FormField
-                  label="Puerto destino"
+                  label="Puerto"
                   icon={LuAnchor}
                   value={guia.destino}
                   onChange={(e) => actualizarGuia(guia.id, "destino", e.target.value)}
                 />
+
+                <FormField
+                  label="Tipo de Transacción"
+                  icon={MdMergeType}
+                  value={guia.origen}
+                  onChange={(e) => actualizarGuia(guia.id, "origen", e.target.value)}
+                />
               </div>
 
               <FileUpload
-                label="Guía de remisión"
-                onFileChange={(file) => actualizarGuia(guia.id, "archivo", file)}
+                label="Guia de Remision"
+                required={true}
+                onFileChange={(file) => actualizarGuia(guia.id, 'archivo', file)}
                 file={guia.archivo}
-                acceptedExtensions={["pdf", "jpg", "jpeg", "png"]}
+                acceptedExtensions={['pdf', 'jpg', 'jpeg', 'png']}
+              />
+
+              <FileUpload
+                label="EIR (Equipment Interchange Receipt)"
+                onFileChange={(file) => actualizarGuia(guia.id, 'extra', file)}
+                file={guia.extra}
+                acceptedExtensions={['pdf']}
               />
 
               <FormField

@@ -16,7 +16,7 @@ export default function Navbar({ toggleTheme }) {
 
         {/* Desktop Menu */}
         <ul className="hidden md:flex gap-8 items-center">
-          <li className="cursor-pointer hover:text-primary">Lotes</li>
+          <li className="cursor-pointer hover:text-primary">Notificaciones de Movimientos</li>
           <li className="cursor-pointer hover:text-primary">Servicios</li>
           <li className="cursor-pointer hover:text-primary">Proyectos</li>
           <li className="cursor-pointer hover:text-primary">Contacto</li>
@@ -52,7 +52,7 @@ export default function Navbar({ toggleTheme }) {
       {/* Mobile Menu */}
       <div className={`md:hidden overflow-hidden transition-all duration-300 ${isOpen ? "max-h-80" : "max-h-0"}`}>
         <ul className="flex flex-col items-center gap-6 py-6">
-          <li className="cursor-pointer hover:text-primary">Lotes</li>
+          <li className="cursor-pointer hover:text-primary">Notificaciones de Movimientos</li>
           <li className="cursor-pointer hover:text-primary">Servicios</li>
           <li className="cursor-pointer hover:text-primary">Proyectos</li>
           <li className="cursor-pointer hover:text-primary">Contacto</li>
