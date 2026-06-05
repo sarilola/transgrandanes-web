@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from "./components/shared/Navbar";
 import IndexLotes from "./modules/lotes/pages/IndexLote";
 import CrearLotePage from "./modules/lotes/pages/CrearLotePage";
+import ClientesPage from "./modules/clientes/pages/ClientesPage";
 
 function App() {
   const [dark, setDark] = useState(false);
@@ -21,6 +22,7 @@ function App() {
           <Routes>
             <Route path="/" element={<IndexLotes />} />
             <Route path="/lotes/crear" element={<CrearLotePage />} />
+            <Route path="/clientes" element={<ClientesPage />} />
           </Routes>
         </main>
 

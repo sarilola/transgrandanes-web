@@ -1,6 +1,7 @@
 {/* Barra de navegación */}
 import { useState } from "react";
 import { FaBars, FaTimes, FaMoon, FaSun } from "react-icons/fa";
+import { Link } from "react-router-dom";
 import logo from "../../assets/logo.svg";
 
 export default function Navbar({ toggleTheme }) {
@@ -12,14 +13,24 @@ export default function Navbar({ toggleTheme }) {
       <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
 
         {/* Logo */}
-        <img src={logo} alt="Logo Transgrandanes" className="h-12 w-auto" />
+        <Link to="/">
+          <img src={logo} alt="Logo Transgrandanes" className="h-12 w-auto cursor-pointer" />
+        </Link>
 
         {/* Desktop Menu */}
         <ul className="hidden md:flex gap-8 items-center">
-          <li className="cursor-pointer hover:text-primary">Notificaciones de Movimientos</li>
-          <li className="cursor-pointer hover:text-primary">Servicios</li>
-          <li className="cursor-pointer hover:text-primary">Proyectos</li>
-          <li className="cursor-pointer hover:text-primary">Contacto</li>
+          <li>
+            <Link to="/" className="cursor-pointer hover:text-primary transition-colors text-[var(--text)] font-medium">
+              Notificaciones de Movimientos
+            </Link>
+          </li>
+          <li>
+            <Link to="/clientes" className="cursor-pointer hover:text-primary transition-colors text-[var(--text)] font-medium">
+              Clientes
+            </Link>
+          </li>
+          <li className="cursor-pointer hover:text-primary transition-colors text-[var(--text)] font-medium">Proyectos</li>
+          <li className="cursor-pointer hover:text-primary transition-colors text-[var(--text)] font-medium">Contacto</li>
         </ul>
 
         <div className="flex items-center gap-4">
@@ -52,8 +63,16 @@ export default function Navbar({ toggleTheme }) {
       {/* Mobile Menu */}
       <div className={`md:hidden overflow-hidden transition-all duration-300 ${isOpen ? "max-h-80" : "max-h-0"}`}>
         <ul className="flex flex-col items-center gap-6 py-6">
-          <li className="cursor-pointer hover:text-primary">Notificaciones de Movimientos</li>
-          <li className="cursor-pointer hover:text-primary">Servicios</li>
+          <li>
+            <Link to="/" onClick={() => setIsOpen(false)} className="cursor-pointer hover:text-primary">
+              Notificaciones de Movimientos
+            </Link>
+          </li>
+          <li>
+            <Link to="/clientes" onClick={() => setIsOpen(false)} className="cursor-pointer hover:text-primary">
+              Clientes
+            </Link>
+          </li>
           <li className="cursor-pointer hover:text-primary">Proyectos</li>
           <li className="cursor-pointer hover:text-primary">Contacto</li>
           <button className="bg-primary text-white px-4 py-2 rounded-full hover:bg-red-700 transition">

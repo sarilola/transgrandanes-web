@@ -69,7 +69,8 @@
 
 @media (max-width: 640px) {
   .clf-grid-2,
-  .clf-grid-3 {
+  .clf-grid-3,
+  .clf-grid-4 {
     grid-template-columns: 1fr;
   }
 }
@@ -116,4 +117,434 @@
 .clf-add-btn:hover {
   background-color: rgba(200, 41, 9, 0.08);
   border-color: rgba(200, 41, 9, 0.5);
+}
+
+/* ── Autocomplete cliente styling ── */
+.client-autocomplete-wrapper {
+  position: relative;
+}
+
+.client-suggestions-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: var(--input-bg-light);
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+  max-height: 200px;
+  overflow-y: auto;
+  list-style: none;
+  padding: 0;
+  margin: 0.25rem 0 0 0;
+}
+.dark .client-suggestions-list {
+  background-color: var(--input-bg-dark);
+  border-color: var(--border-dark);
+}
+
+.client-suggestion-item {
+  padding: 0.6rem 1rem;
+  cursor: pointer;
+  font-size: 0.88rem;
+  color: var(--text-primary-light);
+  transition: background-color 0.2s;
+}
+.dark .client-suggestion-item {
+  color: var(--text-primary-dark);
+}
+
+.client-suggestion-item:hover {
+  background-color: rgba(200, 41, 9, 0.08);
+  color: var(--primary);
+}
+
+/* Warning alert for unregister client */
+.client-warning-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgba(239, 68, 68, 0.05);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  margin-top: 0.5rem;
+  font-size: 0.825rem;
+}
+
+.client-warning-message {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.client-register-link {
+  background: none;
+  border: none;
+  color: var(--primary);
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 0;
+  font-size: 0.825rem;
+}
+
+.client-register-link:hover {
+  color: #b02307;
+}
+
+/* Success selected badge */
+.client-success-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background-color: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  color: #10b981;
+  padding: 0.25rem 0.6rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  margin-top: 0.4rem;
+}
+
+.client-clear-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #10b981;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  padding: 0;
+}
+
+.client-clear-btn:hover {
+  color: #ef4444;
+}
+
+/* Readonly fields styling */
+.readonly-field {
+  opacity: 0.85;
+}
+
+.readonly-field input {
+  background-color: rgba(0, 0, 0, 0.02) !important;
+  cursor: not-allowed;
+}
+.dark .readonly-field input {
+  background-color: rgba(255, 255, 255, 0.02) !important;
+}
+
+/* Express Modal (Hot Modal) */
+.clf-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1.5rem;
+}
+
+.clf-modal-content {
+  background-color: var(--bg);
+  border: 1px solid var(--border-light);
+  border-radius: 16px;
+  width: 100%;
+  max-width: 600px;
+  max-height: 85vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+}
+.dark .clf-modal-content {
+  border-color: var(--border-dark);
+}
+
+.clf-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--border-light);
+}
+.dark .clf-modal-header {
+  border-color: var(--border-dark);
+}
+
+.clf-modal-header h2 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0;
+}
+
+.clf-modal-close-btn {
+  background: none;
+  border: none;
+  font-size: 1.25rem;
+  cursor: pointer;
+  color: var(--text-secondary-light);
+}
+.dark .clf-modal-close-btn {
+  color: var(--text-secondary-dark);
+}
+
+.clf-modal-close-btn:hover {
+  color: var(--primary);
+}
+
+.clf-modal-body {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.clf-modal-footer {
+  padding: 1.25rem 1.5rem;
+  border-top: 1px solid var(--border-light);
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+}
+.dark .clf-modal-footer {
+  border-color: var(--border-dark);
+}
+
+.clf-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.clf-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.clf-input {
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-light);
+  background-color: var(--input-bg-light);
+  color: var(--text-primary-light);
+  font-size: 0.88rem;
+}
+.dark .clf-input {
+  border-color: var(--border-dark);
+  background-color: var(--input-bg-dark);
+  color: var(--text-primary-dark);
+}
+
+.clf-input:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+.clf-email-builder {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.clf-email-line {
+  display: flex;
+  gap: 0.4rem;
+  align-items: center;
+}
+
+.clf-email-line input {
+  flex: 1;
+}
+
+.clf-btn-delete-row {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  background-color: rgba(239, 68, 68, 0.08);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.clf-btn-delete-row:hover {
+  background-color: rgba(239, 68, 68, 0.15);
+  border-color: #ef4444;
+}
+
+.clf-btn-add-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  background-color: rgba(200, 41, 9, 0.04);
+  border: 1px dashed rgba(200, 41, 9, 0.3);
+  color: var(--primary);
+  padding: 0.45rem 0.85rem;
+  border-radius: 8px;
+  font-size: 0.825rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  align-self: flex-start;
+}
+
+.clf-btn-add-row:hover {
+  background-color: rgba(200, 41, 9, 0.08);
+  border-color: var(--primary);
+}
+
+/* Checkbox Panel */
+.clf-checkbox-panel {
+  border: 1px solid var(--border-light);
+  border-radius: 10px;
+  padding: 0.85rem;
+  background-color: rgba(0, 0, 0, 0.01);
+}
+.dark .clf-checkbox-panel {
+  border-color: var(--border-dark);
+  background-color: rgba(255, 255, 255, 0.01);
+}
+
+.clf-checkbox-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border-light);
+  padding-bottom: 0.4rem;
+}
+.dark .clf-checkbox-panel-header {
+  border-color: var(--border-dark);
+}
+
+.clf-checkbox-panel-header span {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-secondary-light);
+}
+.dark .clf-checkbox-panel-header span {
+  color: var(--text-secondary-dark);
+}
+
+.clf-btn-select-all {
+  font-size: 0.725rem;
+  background-color: rgba(200, 41, 9, 0.05);
+  border: 1px solid rgba(200, 41, 9, 0.2);
+  color: var(--primary);
+  padding: 0.2rem 0.4rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.clf-btn-select-all:hover {
+  background-color: rgba(200, 41, 9, 0.1);
+  border-color: var(--primary);
+}
+
+.clf-checkbox-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.6rem;
+}
+
+@media (max-width: 480px) {
+  .clf-checkbox-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.clf-checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.825rem;
+  cursor: pointer;
+  user-select: none;
+  padding: 0.3rem;
+  border-radius: 5px;
+  transition: background-color 0.2s;
+}
+
+.clf-checkbox-label:hover {
+  background-color: rgba(0, 0, 0, 0.02);
+}
+.dark .clf-checkbox-label:hover {
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+.clf-checkbox-icon {
+  font-size: 1.1rem;
+  color: var(--text-secondary-light);
+  display: flex;
+  align-items: center;
+}
+.dark .clf-checkbox-icon {
+  color: var(--text-secondary-dark);
+}
+
+.clf-checkbox-icon.checked {
+  color: var(--primary);
+}
+
+.clf-btn-secondary {
+  padding: 0.55rem 1.1rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-light);
+  background-color: var(--input-bg-light);
+  color: var(--text-primary-light);
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 0.85rem;
+  transition: all 0.2s;
+}
+.dark .clf-btn-secondary {
+  border-color: var(--border-dark);
+  background-color: var(--input-bg-dark);
+  color: var(--text-primary-dark);
+}
+
+.clf-btn-secondary:hover {
+  background-color: rgba(0, 0, 0, 0.02);
+}
+.dark .clf-btn-secondary:hover {
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+.clf-btn-primary {
+  padding: 0.55rem 1.1rem;
+  border-radius: 8px;
+  background-color: var(--primary);
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 0.85rem;
+  transition: all 0.2s;
+}
+
+.clf-btn-primary:hover {
+  background-color: #b02307;
 }
